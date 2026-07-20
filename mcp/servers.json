@@ -1,0 +1,39 @@
+{
+  "$comment": "The MCP servers Christian runs, for reference. OAuth servers (linear/atlassian/sentry) carry no secrets. obsidian-vault needs a local API key, shown here as a ${PLACEHOLDER} — real values are never committed.",
+  "mcpServers": {
+    "linear": {
+      "type": "sse",
+      "url": "https://mcp.linear.app/sse"
+    },
+    "wiki": {
+      "type": "stdio",
+      "command": "uv",
+      "args": ["--directory", "${WIKI_MCP_DIR}", "run", "wiki-mcp"]
+    },
+    "chrome-devtools": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "chrome-devtools-mcp@latest"]
+    },
+    "atlassian": {
+      "type": "http",
+      "url": "https://mcp.atlassian.com/v1/sse"
+    },
+    "sentry": {
+      "type": "http",
+      "url": "https://mcp.sentry.dev/mcp"
+    },
+    "obsidian-vault": {
+      "$optional": "Personal Obsidian vault. Skip unless you use it.",
+      "type": "stdio",
+      "command": "uvx",
+      "args": ["mcp-obsidian"],
+      "env": {
+        "OBSIDIAN_API_KEY": "${OBSIDIAN_API_KEY}",
+        "OBSIDIAN_HOST": "${OBSIDIAN_HOST}",
+        "OBSIDIAN_PORT": "${OBSIDIAN_PORT}",
+        "NODE_TLS_REJECT_UNAUTHORIZED": "0"
+      }
+    }
+  }
+}

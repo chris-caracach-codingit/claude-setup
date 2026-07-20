@@ -1,0 +1,11 @@
+# Secrets and machine-local files — never commit these
+mcp/.env
+**/credentials.env
+**/ACCESS_RULES.md
+settings.local.json
+settings/settings.local.json
+.credentials.json
+
+# Editor/OS noise
+*.swp
+.DS_Store

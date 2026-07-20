@@ -1,0 +1,3 @@
+[submodule "vendor/wiki-mcp"]
+	path = vendor/wiki-mcp
+	url = git@github.com:chris-caracach-codingit/wiki_mcp.git
