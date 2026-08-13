@@ -15,7 +15,7 @@ Clone it, then ask Claude things like:
 - *"Compare my Claude Code setup (`~/.claude`) against this repo and tell me what I'm missing."*
 - *"What conventions does this repo define that I don't follow yet?"*
 - *"Explain what the `tiny-portals` skill does and how it stays safe."*
-- *"Show me how the idle-notification hook is wired so I can set up my own."*
+- *"Show me how the attention-marker hooks are wired so I can set up my own."*
 
 Claude reads [`INDEX.md`](INDEX.md) to orient, then dives into whatever's relevant.
 
@@ -29,8 +29,8 @@ Claude reads [`INDEX.md`](INDEX.md) to orient, then dives into whatever's releva
 ```
 claude-setup/
 ├── INDEX.md      catalog of everything here (start here)
-├── hooks/        shell hooks (bash formatter, idle notification)
-├── commands/     slash commands (/review-diff, /work)
+├── hooks/        shell hooks (bash command formatter)
+├── commands/     slash commands (/post-it, /review-diff, /work)
 ├── agents/       subagent definitions (work-task-worker)
 ├── skills/       skills (tiny-portals)
 ├── mcp/          MCP servers Christian runs (servers.json)

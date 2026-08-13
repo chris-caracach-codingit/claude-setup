@@ -1,5 +1,5 @@
 {
-  "model": "opus[1m]",
+  "model": "claude-opus-5[1m]",
   "effortLevel": "high",
   "theme": "dark-daltonized",
   "hooks": {
@@ -20,7 +20,40 @@
         "hooks": [
           {
             "type": "command",
-            "command": "\"$HOME/.claude/hooks/notify-idle.sh\"",
+            "command": "jq -r '.session_id' | { read -r s; d=\"${XDG_RUNTIME_DIR:-/tmp}/claude-attention\"; mkdir -p \"$d\"; touch \"$d/${s:-default}\"; } 2>/dev/null || true",
+            "async": true
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.session_id' | { read -r s; rm -f \"${XDG_RUNTIME_DIR:-/tmp}/claude-attention/${s:-default}\"; } 2>/dev/null || true",
+            "async": true
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.session_id' | { read -r s; rm -f \"${XDG_RUNTIME_DIR:-/tmp}/claude-attention/${s:-default}\"; } 2>/dev/null || true",
+            "async": true
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.session_id' | { read -r s; rm -f \"${XDG_RUNTIME_DIR:-/tmp}/claude-attention/${s:-default}\"; } 2>/dev/null || true",
             "async": true
           }
         ]
@@ -29,5 +62,13 @@
   },
   "enabledPlugins": {
     "slack@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "claude-obsidian-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "AgriciDaniel/claude-obsidian"
+      }
+    }
   }
 }

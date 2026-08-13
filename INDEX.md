@@ -14,12 +14,13 @@ Shell scripts Claude Code runs on lifecycle events. Wiring lives in `settings/se
 | Path | Purpose | Reader's equivalent |
 |------|---------|---------------------|
 | `hooks/format-bash-command.sh` | Pretty-prints each Bash command before it runs (PreToolUse). Display only. | `~/.claude/settings.json` → `hooks.PreToolUse` (Bash) |
-| `hooks/notify-idle.sh` | Desktop notification via `dunstify` when Claude needs permission or is idle waiting (Notification). | `~/.claude/settings.json` → `hooks.Notification` |
+| *(inline, no script)* | Attention marker: `Notification` touches `$XDG_RUNTIME_DIR/claude-attention/<session_id>`; `UserPromptSubmit`, `PostToolUse`, and `SessionEnd` remove it. A qtile status widget watches that directory and lights up when any session is waiting. Replaced an earlier `notify-idle.sh` that fired `dunstify` toasts. | `~/.claude/settings.json` → `hooks.Notification` / `.UserPromptSubmit` / `.PostToolUse` / `.SessionEnd` |
 
 ## Slash commands — `commands/`
 
 | Path | Purpose | Reader's equivalent |
 |------|---------|---------------------|
+| `commands/post-it.md` | Write a short plain-words note about a problem and its fix, so it can be read aloud to a non-engineer teammate. Saves to `~/post-its/YYYY-MM-DD-<slug>.md`. | `~/.claude/commands/` |
 | `commands/review-diff.md` | Open every file changed on the branch as buffers in one nvim session. | `~/.claude/commands/` |
 | `commands/work.md` | Autonomous loop: triage current-cycle Linear tickets, dispatch workers to open PRs. | `~/.claude/commands/` |
 | `vendor/wiki-mcp/commands/*.md` (15) | Wiki commands (journal, knowledge, projects, debug). Ship with the wiki-mcp server. | `~/.claude/commands/wiki/` |
@@ -43,13 +44,13 @@ Shell scripts Claude Code runs on lifecycle events. Wiring lives in `settings/se
 
 | Path | Purpose | Reader's equivalent |
 |------|---------|---------------------|
-| `mcp/servers.json` | The MCP servers Christian runs: linear, atlassian, sentry, chrome-devtools, wiki (local), obsidian-vault (optional). OAuth servers carry no secrets; obsidian key is a placeholder. | `claude mcp list`; `~/.claude.json` → `mcpServers` |
+| `mcp/servers.json` | The MCP servers Christian runs: linear, atlassian, sentry, chrome-devtools, wiki (local), tiny-health (local, project-scoped), obsidian-vault (optional). OAuth servers carry no secrets; obsidian key is a placeholder. | `claude mcp list`; `~/.claude.json` → `mcpServers` |
 
 ## Settings — `settings/`
 
 | Path | Purpose | Reader's equivalent |
 |------|---------|---------------------|
-| `settings/settings.json` | Model, effort, theme, enabled plugins, and hook wiring. Uses `$HOME` for portability. | `~/.claude/settings.json` |
+| `settings/settings.json` | Model, effort, theme, enabled plugins, extra marketplaces, and hook wiring. Uses `$HOME` for portability. | `~/.claude/settings.json` |
 
 ## Conventions — `memory/`
 

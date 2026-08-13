@@ -19,6 +19,12 @@
       "type": "http",
       "url": "https://mcp.atlassian.com/v1/sse"
     },
+    "tiny-health": {
+      "$scope": "Project-scoped to the monorepo, not global. Runs the local tiny-health MCP server from its own checkout.",
+      "type": "stdio",
+      "command": "npm",
+      "args": ["run", "start", "--prefix", "${TINY_HEALTH_MCP_DIR}"]
+    },
     "sentry": {
       "type": "http",
       "url": "https://mcp.sentry.dev/mcp"
