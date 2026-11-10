@@ -29,10 +29,10 @@ Claude reads [`INDEX.md`](INDEX.md) to orient, then dives into whatever's releva
 ```
 claude-setup/
 ├── INDEX.md      catalog of everything here (start here)
-├── hooks/        shell hooks (bash command formatter)
+├── hooks/        shell hooks (command formatter, AWS read-only guard, pet notifier, memory size check)
 ├── commands/     slash commands (/post-it, /review-diff, /work)
 ├── agents/       subagent definitions (work-task-worker)
-├── skills/       skills (tiny-portals)
+├── skills/       skills (tiny-portals, memory-compact, review-blind, sentry-alert)
 ├── mcp/          MCP servers Christian runs (servers.json)
 ├── settings/     settings.json (model, hooks, theme, plugins)
 ├── memory/       working conventions as memory files

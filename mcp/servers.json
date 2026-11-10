@@ -8,12 +8,21 @@
     "wiki": {
       "type": "stdio",
       "command": "uv",
-      "args": ["--directory", "${WIKI_MCP_DIR}", "run", "wiki-mcp"]
+      "args": [
+        "--directory",
+        "${WIKI_MCP_DIR}",
+        "run",
+        "wiki-mcp"
+      ]
     },
     "chrome-devtools": {
       "type": "stdio",
       "command": "npx",
-      "args": ["-y", "chrome-devtools-mcp@latest"]
+      "args": [
+        "-y",
+        "--prefer-offline",
+        "chrome-devtools-mcp@1.10.1"
+      ]
     },
     "atlassian": {
       "type": "http",
@@ -23,7 +32,12 @@
       "$scope": "Project-scoped to the monorepo, not global. Runs the local tiny-health MCP server from its own checkout.",
       "type": "stdio",
       "command": "npm",
-      "args": ["run", "start", "--prefix", "${TINY_HEALTH_MCP_DIR}"]
+      "args": [
+        "run",
+        "start",
+        "--prefix",
+        "${TINY_HEALTH_MCP_DIR}"
+      ]
     },
     "sentry": {
       "type": "http",
@@ -33,7 +47,9 @@
       "$optional": "Personal Obsidian vault. Skip unless you use it.",
       "type": "stdio",
       "command": "uvx",
-      "args": ["mcp-obsidian"],
+      "args": [
+        "mcp-obsidian"
+      ],
       "env": {
         "OBSIDIAN_API_KEY": "${OBSIDIAN_API_KEY}",
         "OBSIDIAN_HOST": "${OBSIDIAN_HOST}",

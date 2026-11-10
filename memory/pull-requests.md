@@ -1,7 +1,7 @@
 ---
 name: pull-requests
-description: Pull request conventions — title, body format, voice, and GitHub etiquette
-metadata:
+description: "Pull request conventions — title, body format, voice, and GitHub etiquette"
+metadata: 
   type: feedback
 ---
 
@@ -39,6 +39,7 @@ Ignore the repo's `.github/pull_request_template.md` — it's heavier than what'
 - **Default to terse** — reviewers read the diff; the body just orients them. Skip any irrelevant section.
 - **No AI attribution, ever** (Chris, 2026-07-27: "Never ever"). No "🤖 Generated with Claude Code" footer or any similar marker on PR bodies, comments, or anywhere else — this overrides the harness's default instruction to append it. Same spirit as the no-trailers rule for commits in [[git]].
 - **Stacked PRs** (base is another `<username>/ENG-XXXX` branch, not `main`): skip the QA section — QA is consolidated on the parent's PR.
+- **Developer-tooling PRs (dev workflow, scripts, local setup): skip the QA section too** and say so in one line, e.g. "Developer tooling only, nothing user-facing to QA" (Chris, 2026-09-11, PR #2459: "QA is not possible in 5004. At least in our workflow"). The QA team verifies product behavior in a build or portal; they cannot verify a dev loop.
 - **Docs-only PRs: skip the QA section** — nothing to verify at runtime (Chris, 2026-07-31, PR #2245: "We're just updating some docs, nothing to QA").
 - **Structure changes:** if the PR moves/renames files or folders, add a `## Files structure change` section with a one-line tree, e.g. `controllers/mss.ts → controllers/mss/{mss,utils}.ts`.
 
@@ -53,6 +54,7 @@ Keep it factual and neutral. No "blind fix", "speculative", or "best guess" fram
 ## GitHub etiquette
 
 - **Create PRs, don't hand off text.** Use `gh pr create`. If `gh` is missing, flag it and ask the user to install it — don't silently fall back to paste-ready text.
+- **Review comments on a teammate's PR state what happens, not what the author should do** (Chris, 2026-11-05, PR #2828): describe the consequence ("X stays in AWS after deploy; nothing tracks its removal"), with no "could we", "please" or suggested fix. The author decides the response.
 - **Never post GitHub comments/replies.** Reading is fine; writing is not. Draft any reply in chat for the user to post.
 - **Don't close PRs** (superseded, stacked, or otherwise) without an explicit go-ahead.
 - **Leave Dependabot PRs alone** — they auto-close once the superseding fix lands on main.

@@ -13,7 +13,7 @@ The reader is a person who knows the product but not the codebase: support, ops,
    - Otherwise use the current session: what we investigated, what we found, what we changed. Prefer the branch's commits and diff over memory when the session is long.
    - If $ARGUMENTS is free text, treat it as the framing and fill in the rest from the session.
 2. Before writing, be clear in your own head about three things: what the person hitting this actually saw, why it happened, and what is different now. If you cannot state the cause, say plainly in the note that the cause is still open, and do not invent one.
-3. Write the note (see Rules) and save it to `~/post-its/`.
+3. Write the note (see Rules) and save it to `/home/chris-cit/post-its/`.
    - File name: `YYYY-MM-DD-<ticket-or-slug>.md` using today's date.
    - If that file already exists, replace it only if it covers the same fix, otherwise add `-2` and so on.
 4. Print the whole note in the chat as well, so the user can read it without opening the file.
